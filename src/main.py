@@ -1,6 +1,8 @@
 import lexer
 import myparser
 import sys
+from type_checker import TypeChecker
+
 
 if __name__ == '__main__':
 
@@ -16,3 +18,6 @@ if __name__ == '__main__':
     ast = parser.parse(text, lexer=lexer.lexer)
     if ast is not None:
       ast.printTree()
+    if not myparser.error:
+      type_checker = TypeChecker()
+      type_checker.visit(ast)
